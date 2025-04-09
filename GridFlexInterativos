@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia Interativo: CSS Grid</title>
+  <title>Guia Interativo: CSS Flexbox e Grid</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -38,12 +38,21 @@
       margin-bottom: 30px;
     }
 
-    .grid-item {
+    .flex-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .grid-item, .flex-item {
       background-color: #90caf9;
       color: #fff;
       padding: 20px;
       text-align: center;
       border-radius: 8px;
+      min-width: 80px;
+      flex: 1 0 auto;
     }
 
     .demo-controls {
@@ -57,9 +66,9 @@
   </style>
 </head>
 <body>
-  <h1>🧱 Guia Interativo: CSS Grid</h1>
+  <h1>🧱 Guia Interativo: CSS Grid e Flexbox</h1>
 
-  <h2>Tabela de Propriedades</h2>
+  <h2>Tabela de Propriedades - Grid</h2>
   <table>
     <tr><th>Propriedade</th><th>Descrição</th><th>Exemplo</th></tr>
     <tr><td>display</td><td>Define o layout grid</td><td>display: grid;</td></tr>
@@ -74,7 +83,6 @@
   </table>
 
   <h2>🎯 Visualize um Grid</h2>
-
   <div class="demo-controls">
     <label for="columns">Colunas:</label>
     <input type="number" id="columns" value="3" min="1" max="6">
@@ -94,6 +102,45 @@
     <div class="grid-item">6</div>
   </div>
 
+  <h2>Tabela de Propriedades - Flexbox</h2>
+  <table>
+    <tr><th>Propriedade</th><th>Descrição</th><th>Exemplo</th></tr>
+    <tr><td>display</td><td>Define o layout flexível</td><td>display: flex;</td></tr>
+    <tr><td>flex-direction</td><td>Direção dos itens</td><td>row | column</td></tr>
+    <tr><td>justify-content</td><td>Alinhamento horizontal</td><td>center | space-between</td></tr>
+    <tr><td>align-items</td><td>Alinhamento vertical</td><td>center | stretch</td></tr>
+    <tr><td>flex-wrap</td><td>Permite quebra de linha</td><td>wrap | nowrap</td></tr>
+    <tr><td>gap</td><td>Espaçamento entre itens</td><td>10px</td></tr>
+    <tr><td>flex</td><td>Crescimento/encolhimento do item</td><td>1 0 auto</td></tr>
+    <tr><td>order</td><td>Ordem dos itens</td><td>1, 2, etc</td></tr>
+  </table>
+
+  <h2>🔧 Visualize um Flexbox</h2>
+  <div class="demo-controls">
+    <label for="flex-wrap">flex-wrap:</label>
+    <select id="flex-wrap" onchange="atualizarFlex()">
+      <option value="nowrap">nowrap</option>
+      <option value="wrap">wrap</option>
+    </select>
+
+    <label for="justify-content">justify-content:</label>
+    <select id="justify-content" onchange="atualizarFlex()">
+      <option value="flex-start">flex-start</option>
+      <option value="center">center</option>
+      <option value="space-between">space-between</option>
+      <option value="space-around">space-around</option>
+    </select>
+  </div>
+
+  <div id="flexDemo" class="flex-container">
+    <div class="flex-item">1</div>
+    <div class="flex-item">2</div>
+    <div class="flex-item">3</div>
+    <div class="flex-item">4</div>
+    <div class="flex-item">5</div>
+    <div class="flex-item">6</div>
+  </div>
+
   <script>
     function atualizarGrid() {
       const colunas = document.getElementById('columns').value;
@@ -102,6 +149,15 @@
 
       grid.style.gridTemplateColumns = `repeat(${colunas}, 1fr)`;
       grid.style.gap = `${gap}px`;
+    }
+
+    function atualizarFlex() {
+      const wrap = document.getElementById('flex-wrap').value;
+      const justify = document.getElementById('justify-content').value;
+      const flex = document.getElementById('flexDemo');
+
+      flex.style.flexWrap = wrap;
+      flex.style.justifyContent = justify;
     }
   </script>
 </body>
