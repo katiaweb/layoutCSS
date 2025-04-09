@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia Interativo: CSS Flexbox</title>
+  <style>
+
+  *{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 15px;
+    }
+
+  body {
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e3e3e3;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+     .flex-item {
+      background-color: #90caf9;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      min-width: 80px;
+      flex: 1 0 auto;
+    }
+
+    .demo-controls {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .alinhamento-exemplo {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+
+    .alinhamento-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      background-color: #e0f7fa;
+    }
+
+    .alinhamento-item {
+      background-color: #00796b;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    #flex-wrap, #justify-content, #align-items, #flex-direction{
+      font-size: 1.5rem;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>🧱 Guia Interativo: Flexbox</h1>
+
+
+  <h2>Tabela de Propriedades - Flexbox</h2>
+  <table>
+    <tr><th>Propriedade</th><th>Descrição</th><th>Exemplo</th></tr>
+    <tr><td>display</td><td>Define o layout flexível</td><td>display: flex;</td></tr>
+    <tr><td>flex-direction</td><td>Direção dos itens</td><td>row | column</td></tr>
+    <tr><td>justify-content</td><td>Alinhamento horizontal</td><td>center | space-between</td></tr>
+    <tr><td>align-items</td><td>Alinhamento vertical</td><td>center | stretch</td></tr>
+    <tr><td>flex-wrap</td><td>Permite quebra de linha</td><td>wrap | nowrap</td></tr>
+    <tr><td>gap</td><td>Espaçamento entre itens</td><td>10px</td></tr>
+    <tr><td>flex</td><td>Crescimento/encolhimento do item</td><td>1 0 auto</td></tr>
+    <tr><td>order</td><td>Ordem dos itens</td><td>1, 2, etc</td></tr>
+  </table>
+
+  <h2>🔧 Visualize um Flexbox</h2>
+  <div class="demo-controls">
+    <label for="flex-wrap">flex-wrap:</label>
+    <select id="flex-wrap" onchange="atualizarFlex()">
+      <option value="nowrap">nowrap</option>
+      <option value="wrap">wrap</option>
+    </select>
+
+    <label for="justify-content">justify-content:</label>
+    <select id="justify-content" onchange="atualizarFlex()">
+      <option value="flex-start">flex-start</option>
+      <option value="center">center</option>
+      <option value="space-between">space-between</option>
+      <option value="space-around">space-around</option>
+    </select>
+
+    <label for="align-items">align-items:</label>
+    <select id="align-items" onchange="atualizarFlex()">
+      <option value="stretch">stretch</option>
+      <option value="center">center</option>
+      <option value="flex-start">flex-start</option>
+      <option value="flex-end">flex-end</option>
+    </select>
+
+    <label for="flex-direction">flex-direction:</label>
+    <select id="flex-direction" onchange="atualizarFlex()">
+      <option value="row">row</option>
+      <option value="row-reverse">row-reverse</option>
+      <option value="column">column</option>
+      <option value="column-reverse">column-reverse</option>
+    </select>
+  </div>
+
+  <div id="flexDemo" class="flex-container">
+    <div class="flex-item">1</div>
+    <div class="flex-item">2</div>
+    <div class="flex-item">3</div>
+    <div class="flex-item">4</div>
+    <div class="flex-item">5</div>
+    <div class="flex-item">6</div>
+  </div>
+
+  <h2>📐 Exemplos Visuais de Alinhamento</h2>
+
+  <div class="alinhamento-exemplo">
+    <p><strong>justify-content: center + align-items: center</strong></p>
+    <div class="alinhamento-container" style="justify-content: center; align-items: center;">
+      <div class="alinhamento-item">Centro</div>
+    </div>
+  </div>
+
+  <div class="alinhamento-exemplo">
+    <p><strong>justify-content: space-between + align-items: flex-end</strong></p>
+    <div class="alinhamento-container" style="justify-content: space-between; align-items: flex-end;">
+      <div class="alinhamento-item">Esquerda</div>
+      <div class="alinhamento-item">Direita</div>
+    </div>
+  </div>
+
+  <div class="alinhamento-exemplo">
+    <p><strong>justify-content: flex-start + align-items: flex-start</strong></p>
+    <div class="alinhamento-container" style="justify-content: flex-start; align-items: flex-start;">
+      <div class="alinhamento-item">Início</div>
+    </div>
+  </div>
+  
+  <div class="alinhamento-exemplo">
+    <p><strong>justify-content: flex-end + align-items: flex-end</strong></p>
+    <div class="alinhamento-container" style="justify-content: flex-end; align-items: flex-end;">
+      <div class="alinhamento-item">Fim</div>
+    </div>
+  </div>
+  
+  <div class="alinhamento-exemplo">
+    <p><strong>justify-content: space-around + align-items: stretch</strong></p>
+    <div class="alinhamento-container" style="justify-content: space-around; align-items: stretch;">
+      <div class="alinhamento-item" style="height: auto;">Item 1</div>
+      <div class="alinhamento-item" style="height: auto;">Item 2</div>
+    </div>
+  </div>
+  
+
+  <script>
+
+    function atualizarFlex() {
+      const wrap = document.getElementById('flex-wrap').value;
+      const justify = document.getElementById('justify-content').value;
+      const align = document.getElementById('align-items').value;
+      const direction = document.getElementById('flex-direction').value;
+      const flex = document.getElementById('flexDemo');
+
+      flex.style.flexWrap = wrap;
+      flex.style.justifyContent = justify;
+      flex.style.alignItems = align;
+      flex.style.flexDirection = direction;
+    }
+  </script>
+</body>
+</html>
