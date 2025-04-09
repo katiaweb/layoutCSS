@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparando Tipos de Display</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #333;
+    }
+
+    .box {
+      background-color: #4FC3F7;
+      color: white;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .container {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border: 1px dashed #aaa;
+    }
+
+    /* 1. inline */
+    .inline .box {
+      display: inline;
+      width: 150px; /* ignorado */
+      height: 100px; /* ignorado */
+    }
+
+    /* 2. block */
+    .block .box {
+      display: block;
+      width: 150px;
+      height: 100px;
+    }
+
+    /* 3. inline-block */
+    .inline-block .box {
+      display: inline-block;
+      width: 150px;
+      height: 100px;
+    }
+
+    /* 4. flex */
+    .flex {
+      display: flex;
+      gap: 10px; /* espaço entre os itens */
+      justify-content: flex-start; /* alinhamento à esquerda */
+    }
+
+    .flex .box {
+      width: 150px;
+      height: 100px;
+    }
+
+    /* 5. grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+      gap: 10px;
+    }
+
+    .grid .box {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Comparando Tipos de Display em CSS</h1>
+
+  <h2>1. display: inline</h2>
+  <div class="container inline">
+    <span class="box">Box A</span>
+    <span class="box">Box B</span>
+    <span class="box">Box C</span>
+  </div>
+  <p><strong>↪️ inline:</strong> lado a lado, mas não respeita largura/altura.</p>
+
+  <h2>2. display: block</h2>
+  <div class="container block">
+    <div class="box">Box A</div>
+    <div class="box">Box B</div>
+    <div class="box">Box C</div>
+  </div>
+  <p><strong>↪️ block:</strong> quebra linha, respeita largura/altura.</p>
+
+  <h2>3. display: inline-block</h2>
+  <div class="container inline-block">
+    <div class="box">Box A</div>
+    <div class="box">Box B</div>
+    <div class="box">Box C</div>
+  </div>
+  <p><strong>↪️ inline-block:</strong> lado a lado, com controle de tamanho.</p>
+
+  <h2>4. display: flex</h2>
+  <div class="container flex">
+    <div class="box">Box A</div>
+    <div class="box">Box B</div>
+    <div class="box">Box C</div>
+  </div>
+  <p><strong>↪️ flex:</strong> layout flexível em linha (ideal para menus, cards, etc).</p>
+
+  <h2>5. display: grid</h2>
+  <div class="container grid">
+    <div class="box">Box A</div>
+    <div class="box">Box B</div>
+    <div class="box">Box C</div>
+  </div>
+  <p><strong>↪️ grid:</strong> layout em grade (ótimo para painéis, galerias, etc).</p>
+
+</body>
+</html>
