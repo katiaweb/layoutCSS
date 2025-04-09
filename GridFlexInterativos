@@ -130,6 +130,22 @@
       <option value="space-between">space-between</option>
       <option value="space-around">space-around</option>
     </select>
+
+    <label for="align-items">align-items:</label>
+    <select id="align-items" onchange="atualizarFlex()">
+      <option value="stretch">stretch</option>
+      <option value="center">center</option>
+      <option value="flex-start">flex-start</option>
+      <option value="flex-end">flex-end</option>
+    </select>
+
+    <label for="flex-direction">flex-direction:</label>
+    <select id="flex-direction" onchange="atualizarFlex()">
+      <option value="row">row</option>
+      <option value="row-reverse">row-reverse</option>
+      <option value="column">column</option>
+      <option value="column-reverse">column-reverse</option>
+    </select>
   </div>
 
   <div id="flexDemo" class="flex-container">
@@ -154,10 +170,14 @@
     function atualizarFlex() {
       const wrap = document.getElementById('flex-wrap').value;
       const justify = document.getElementById('justify-content').value;
+      const align = document.getElementById('align-items').value;
+      const direction = document.getElementById('flex-direction').value;
       const flex = document.getElementById('flexDemo');
 
       flex.style.flexWrap = wrap;
       flex.style.justifyContent = justify;
+      flex.style.alignItems = align;
+      flex.style.flexDirection = direction;
     }
   </script>
 </body>
